@@ -63,3 +63,12 @@
 code {
     color: #c02d76;
 }
+
+/*Custom Styles*/
+.post .posttext {
+    width: 100% !important;
+}
+
+.post .wrap-ut {
+    width: 100% !important;
+}

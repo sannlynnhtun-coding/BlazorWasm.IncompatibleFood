@@ -1,128 +1,72 @@
 ﻿@page "/"
+@using MudBlazor
+@inject IncompatibleFoodService _service
 
-
-<section class="content mt-5">
+<section class="content">
 
     <div class="container">
-        <div class="row">
+        <div class="row mt-5">
             <div class="col-lg-8 col-md-8">
                 <!-- POST -->
-                <div class="post">
-                    <div class="wrap-ut pull-left">
-                        <div class="userinfo pull-left">
-                            <div class="avatar">
-                                <img src="images/avatar.jpg" alt="" />
-                                <div class="status green">&nbsp;</div>
-                            </div>
+                @if (DataList is not null)
+                {
+                    @foreach (var item in DataList.Data ?? new())
+                    {
 
-                            <div class="icons">
-                                <img src="images/icon1.jpg" alt="" /><img src="images/icon4.jpg" alt="" />
+                        <div class="post text-center">
+                            <div class="clearfix"></div>
+                            <div class="wrap-ut pull-left">
+                                <div class="posttext pull-left text-center">
+                                    <h2>
+                                        <span>@item.FoodA</span>
+                                        +
+                                        <span>@item.FoodB</span>
+                                        =>
+                                        <span>@item.Description</span>
+                                    </h2>
+                                </div>
                             </div>
+                            <div class="clearfix"></div>
                         </div>
-                        <div class="posttext pull-left">
-                            <h2><a href="02_topic.html">10 Kids Unaware of Their Halloween Costume</a></h2>
-                            <p>It's one thing to subject yourself to a Halloween costume mishap because, hey, that's your prerogative.</p>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="postinfo pull-left">
-                        <div class="comments">
-                            <div class="commentbg">
-                                560
-                                <div class="mark"></div>
-                            </div>
 
+                    }
+                    @if (DataList.PageSetting is not null)
+                    {
+                        <div class="d-flex flex-column align-center my-5">
+                            <MudPagination Rectangular="true"
+                                           Variant="Variant.Outlined"
+                                           Count="@DataList.PageSetting.PageCount"
+                                           SelectedChanged="PageChanged"
+                                           BoundaryCount="2" MiddleCount="3" />
                         </div>
-                        <div class="views"><i class="fa fa-eye"></i> 1,568</div>
-                        <div class="time"><i class="fa fa-clock-o"></i> 24 min</div>
-                    </div>
-                    <div class="clearfix"></div>
-                </div><!-- POST -->
-                <!-- POST -->
-                <div class="post">
-                    <div class="wrap-ut pull-left">
-                        <div class="userinfo pull-left">
-                            <div class="avatar">
-                                <img src="images/avatar2.jpg" alt="" />
-                                <div class="status red">&nbsp;</div>
-                            </div>
-
-                            <div class="icons">
-                                <img src="images/icon3.jpg" alt="" /><img src="images/icon4.jpg" alt="" /><img src="images/icon5.jpg" alt="" /><img src="images/icon6.jpg" alt="" />
-                            </div>
-                        </div>
-                        <div class="posttext pull-left">
-                            <h2><a href="02_topic.html">What Instagram Ads Will Look Like</a></h2>
-                            <p>Instagram offered a first glimpse at what its ads will look like in a blog post Thursday. The sample ad, which you can see below.</p>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="postinfo pull-left">
-                        <div class="comments">
-                            <div class="commentbg">
-                                89
-                                <div class="mark"></div>
-                            </div>
-
-                        </div>
-                        <div class="views"><i class="fa fa-eye"></i> 1,568</div>
-                        <div class="time"><i class="fa fa-clock-o"></i> 15 min</div>
-                    </div>
-                    <div class="clearfix"></div>
-                </div><!-- POST -->
-
+                    }
+                }
             </div>
+
             <div class="col-lg-4 col-md-4">
 
                 <!-- -->
-                <div class="sidebarblock">
-                    <h3>Categories</h3>
-                    <div class="divline"></div>
-                    <div class="blocktxt">
-                        <ul class="cats">
-                            <li><a href="#">Trading for Money <span class="badge pull-right">20</span></a></li>
-                            <li><a href="#">Vault Keys Giveway <span class="badge pull-right">10</span></a></li>
-                            <li><a href="#">Misc Guns Locations <span class="badge pull-right">50</span></a></li>
-                            <li><a href="#">Looking for Players <span class="badge pull-right">36</span></a></li>
-                            <li><a href="#">Stupid Bugs &amp; Solves <span class="badge pull-right">41</span></a></li>
-                            <li><a href="#">Video &amp; Audio Drivers <span class="badge pull-right">11</span></a></li>
-                            <li><a href="#">2K Official Forums <span class="badge pull-right">5</span></a></li>
-                        </ul>
+                @if (CategoryList is not null)
+                {
+
+                    <div class="sidebarblock">
+                        <h3>Categories</h3>
+                        <div class="divline"></div>
+                        <div class="blocktxt">
+                            <ul class="cats">
+                                @foreach (var item in CategoryList.Data ?? new())
+                                {
+                                    <li><a href="javascript:void(0);" @onclick="@(() => {_category = @item.Name;PageChanged(1);})">@item.Name <span class="badge pull-right">@item.Count</span></a></li>
+                                }
+                            </ul>
+                        </div>
                     </div>
-                </div>
+
+                }
 
             </div>
+
         </div>
     </div>
-
-
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-xs-12">
-                <div class="pull-left"><a href="#" class="prevnext"><i class="fa fa-angle-left"></i></a></div>
-                <div class="pull-left">
-                    <ul class="paginationforum">
-                        <li class="hidden-xs"><a href="#">1</a></li>
-                        <li class="hidden-xs"><a href="#">2</a></li>
-                        <li class="hidden-xs"><a href="#">3</a></li>
-                        <li class="hidden-xs"><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">6</a></li>
-                        <li><a href="#" class="active">7</a></li>
-                        <li><a href="#">8</a></li>
-                        <li class="hidden-xs"><a href="#">9</a></li>
-                        <li class="hidden-xs"><a href="#">10</a></li>
-                        <li class="hidden-xs hidden-md"><a href="#">11</a></li>
-                        <li class="hidden-xs hidden-md"><a href="#">12</a></li>
-                        <li class="hidden-xs hidden-sm hidden-md"><a href="#">13</a></li>
-                        <li><a href="#">1586</a></li>
-                    </ul>
-                </div>
-                <div class="pull-left"><a href="#" class="prevnext last"><i class="fa fa-angle-right"></i></a></div>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-    </div>
-
 
 </section>

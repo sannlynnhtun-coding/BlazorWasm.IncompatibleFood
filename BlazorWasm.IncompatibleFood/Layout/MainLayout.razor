@@ -1,51 +1,39 @@
 ﻿@inherits LayoutComponentBase
 
+<MudThemeProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
 <div class="container-fluid">
 
     <div class="headernav">
         <div class="container">
             <div class="row">
-                <div class="col-lg-1 col-xs-3 col-sm-2 col-md-2 logo "><a href="index.html"><img src="images/logo.jpg" alt="" /></a></div>
-                <div class="col-lg-3 col-xs-9 col-sm-5 col-md-3 selecttopic">
+                <div class="col-lg-1 col-xs-3 col-sm-2 col-md-2 logo "><img src="favicon.jpg" alt="" style="width: 60px; height: 69px;" /></div>
+                <div class="col-lg-11 col-xs-9 col-sm-10 col-md-10 selecttopic">
                     <div class="dropdown">
-                        <a data-toggle="dropdown" href="#">Borderlands 2</a> <b class="caret"></b>
-                        <ul class="dropdown-menu" role="menu">
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Borderlands 1</a></li>
-                            <li role="presentation"><a role="menuitem" tabindex="-2" href="#">Borderlands 2</a></li>
-                            <li role="presentation"><a role="menuitem" tabindex="-3" href="#">Borderlands 3</a></li>
-
-                        </ul>
+                        <h2>Incompatible Food (တွဲဖက်၍ မစားသင့်သော အစားအစာများ)</h2>
                     </div>
                 </div>
-                <div class="col-lg-4 search hidden-xs hidden-sm col-md-3">
-                    <div class="wrap">
-                        <form action="#" method="post" class="form">
-                            <div class="pull-left txt"><input type="text" class="form-control" placeholder="Search Topics"></div>
-                            <div class="pull-right"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></div>
-                            <div class="clearfix"></div>
-                        </form>
-                    </div>
-                </div>
-              
             </div>
         </div>
     </div>
-    
+
     @Body
-    
+
     <footer>
         <div class="container">
             <div class="row">
-                <div class="col-lg-1 col-xs-3 col-sm-2 logo "><a href="#"><img src="images/logo.jpg" alt="" /></a></div>
-                <div class="col-lg-8 col-xs-9 col-sm-5 ">Copyrights 2014, websitename.com</div>
+                <div class="col-lg-1 col-xs-3 col-sm-2 logo "><a href="#"></a></div>
+                @{
+                    int current = DateTime.Now.Year;
+                    string year = (current == 2023) ? "2023" : $"2023 - {current}";
+                }
+                <div class="col-lg-8 col-xs-9 col-sm-5 ">Copyrights @year, <a href="https://forum.azyrusthemes.com/index.html">forum.azyrusthemes.com</a></div>
                 <div class="col-lg-3 col-xs-12 col-sm-5 sociconcent">
                     <ul class="socialicons">
-                        <li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                        <li><a href="#"><i class="fa fa-cloud"></i></a></li>
-                        <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                        <li><a href="https://github.com/topics/burma-project-ideas" target="_blank"><i class="fa fa-github"></i></a></li>
+
                     </ul>
                 </div>
             </div>
